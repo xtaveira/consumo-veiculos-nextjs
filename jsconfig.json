@@ -1,0 +1,10 @@
+{
+    "compilarOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@components/*":["components/*"],
+            "@lib/*": ["lib/*"],
+            "@public/*": ["public/*"],
+        }
+    }
+}

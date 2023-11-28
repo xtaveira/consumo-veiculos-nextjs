@@ -1,10 +1,15 @@
 import React from 'react'
+import Button from './Button'
 
 const Navbar = () => {
   return (
-    <div className="border-2 border-red-500 flex justify-center items-center">
-        <h2>Controle de Consumo</h2>
-    </div>
+    <nav className=" flex justify-evenly items-center">
+        <h1>Controle de Consumo</h1>
+        <div className='flex flex-col gap-2'>
+        <Button title="Novo Veículo"/>
+        <Button title="ABASTECER"/>
+        </div>
+    </nav>
   )
 }
 

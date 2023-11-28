@@ -1,7 +1,15 @@
+"use client"
+
 import VehicleCard from '@/components/VehicleCard'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connectToDb } from '@/utils/database'
 
 const page = () => {
+
+  useEffect(() => {
+    connectToDb();
+  }, [])
+  
 
   const vehicles = [
     {
@@ -20,9 +28,10 @@ const page = () => {
   ]
 
   return (
-    <div className="border-2 border-yellow-400 h-[80%] w-full sm:max-w-[80%] m-3 flex justify-center items-center flex-wrap">
+    <div className=" h-[80%] w-full sm:max-w-[80%] m-3 flex justify-center items-center flex-wrap">
       {vehicles.map((vehicle)=> (
         <VehicleCard
+        key={vehicle.placa}
         placa={vehicle.placa}
         color={vehicle.color}
         modelo={vehicle.modelo}

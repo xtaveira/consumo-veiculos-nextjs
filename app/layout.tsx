@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <main className="min-h-screen grid grid-rows-[10%,80%,10%] bg-gray-900 text-white">
           <Navbar />
-          <section className="border-2 border-blue-500 flex justify-center items-center">
+          <section className=" flex justify-center items-center">
             {children}
           </section>
           <Footer />

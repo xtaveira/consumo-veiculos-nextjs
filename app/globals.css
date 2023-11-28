@@ -25,3 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.btn {
+  @apply rounded-full border border-black bg-white py-1.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm flex items-center justify-center;
+}
