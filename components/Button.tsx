@@ -1,15 +1,21 @@
 import React from 'react'
 
 interface ButtonProps {
-    title: string
+  type?: "button" | "submit",
+  title: string,
+  action?: Function
 }
 
 
-const Button = ({title}:ButtonProps) => {
+const Button = ({ type, title }: ButtonProps) => {
+
+  if (type == null) type = "button"
+
+
   return (
-    <div className="btn cursor-pointer hover:bg-gray-500">
-        {title}
-    </div>
+    <button type={type} className="btn cursor-pointer hover:bg-gray-500" >
+      {title}
+    </button>
   )
 }
 

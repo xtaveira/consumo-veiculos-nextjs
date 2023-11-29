@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <main className="min-h-screen grid grid-rows-[10%,80%,10%] bg-gray-900 text-white">
           <Navbar />
-          <section className=" flex justify-center items-center">
+          <section className=" flex justify-center items-center flex-col sm:flex-row">
             {children}
           </section>
           <Footer />

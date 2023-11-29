@@ -1,19 +1,23 @@
-import { getVehicles } from "../../../lib/mongo/vehicles";
+import connect from '../../../utils/database'
 
-const handler = async(req, res) => {
-    if(req.method === 'GET') {
-        try {
-            const { vehicles, error} = await getVehicles()
-            if(error) throw new Error(error)
+export default async function handler(req, res){
 
-            return res.status(200).json({vehicles})
-        } catch (error) {
-            return res.status(500).json({error: error.message})
+    try {
+        const {db} = await connect()
+
+        const vehicle = {
+            placa: req.body.placa,
+            color: req.body.color,
+            modelo: req.body.modelo,
+            consumo: req.body.consumo,
+            categoria: req.body.categoria
         }
+    
+        const response = await db.collection('vehicles').insertOne(vehicle)
+    
+        res.status(200).json(response)
+    } catch (error) {
+        console.log(error)
     }
-
-    res.setHeader('Allor', ['GET'])
-    res.status(425).end(`Method ${req.method} is not allowed.`)
+   
 }
-
-export default handler

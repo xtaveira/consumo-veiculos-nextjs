@@ -1,30 +1,13 @@
-import mongoose from "mongoose";
+import { MongoClient } from "mongodb";
 
-let isConnected = false;
+const url = process.env.MONGODB_URI;
 
-export const connectToDb = async () => {
-    console.log("try to connect to database")
-    mongoose.set('strictQuery', true)
+const client = new MongoClient(url);
 
-    if(isConnected){
-        console.log("mongodb is already connected")
-        return;
-    }
+export default async function connect() {
+  await client.connect();
 
-    try {
-        await mongoose.connect(process.env.MONGODB_URI, {
-            dbName: "veiculos",
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        })
+  const db = client.db("consumos");
 
-        isConnected = true;
-
-        console.log("mongodb is connected")
-
-        
-
-    } catch (error) {
-        console.log(error)
-    }
+  return {db, client}
 }
