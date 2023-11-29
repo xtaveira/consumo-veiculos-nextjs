@@ -7,7 +7,7 @@ import { connectToDb } from '@/utils/database'
 const page = () => {
 
   useEffect(() => {
-    connectToDb();
+    // connectToDb();
   }, [])
   
 
