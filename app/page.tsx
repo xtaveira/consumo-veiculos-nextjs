@@ -4,16 +4,17 @@ import VehicleCard from '@/components/VehicleCard'
 import React, { useEffect, useState } from 'react'
 import dbConnect from '@/utils/database'
 import Button from '@/components/Button'
+import Form from '@/components/Form'
 
 
 
 const page = () => {
 
-  const [newVehicle, setNewVehicle] = useState(true)
+  const [newVehicle, setNewVehicle] = useState(false)
 
   useEffect(() => {
     // connectToDb();
-    setNewVehicle(true)
+    setNewVehicle(false)
   }, [])
 
 
@@ -37,26 +38,14 @@ const page = () => {
 
 
 
-  const handleSubmit = () => {
-    // e.preventDefault();
-    setNewVehicle(false)
-
-  }
+ 
 
   return (
     <>
       {newVehicle && <div className=" h-[80%] w-full sm:max-w-[80%] m-3 flex justify-center items-center flex-wrap">
-        <form className="flex flex-col gap-4 items-end justify-center" onSubmit={handleSubmit}>
-          <div className='w-full'>
-            <h2 className="text-center">Novo Veículo</h2>
-          </div>
-          <label className="capitalize">placa  <input className="text-black rounded-xl ml-2  px-2" id="placa" name="placa" /></label>
-          <label className="capitalize">modelo  <input className="text-black rounded-xl ml-2 px-2" id="modelo" name="modelo" /></label>
-          <label className="capitalize">cor  <input className="text-black rounded-xl ml-2 px-2" id="cor" name="cor" /></label>
-          <Button title="ADICIONAR" type="submit" />
-        </form>
+       <Form />
       </div>}
-
+      
       <div className=" h-[80%] w-full sm:max-w-[80%] m-3 flex justify-center items-center flex-wrap">
         {vehicles.map((vehicle) => (
           <VehicleCard
