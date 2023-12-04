@@ -1,19 +1,17 @@
-import React from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 
-interface ButtonProps {
-  type?: "button" | "submit",
+interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   title: string,
-  setCreateNewVehicle?: () => {}
 }
 
 
-const Button = ({ type, title, setCreateNewVehicle }: ButtonProps) => {
+const Button = ({ type, title, ...props }: ButtonProps) => {
 
   if (type == null) type = "button"
 
 
   return (
-    <button type={type} className="btn cursor-pointer hover:bg-gray-500" onClick={setCreateNewVehicle} >
+    <button {...props} type={type} className="btn cursor-pointer hover:bg-gray-500" >
       {title}
     </button>
   )
