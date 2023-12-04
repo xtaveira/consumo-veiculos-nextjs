@@ -2,12 +2,14 @@ import connect from '../../../utils/database'
 
 export default async function handler(req, res){
 
+    req.body.cor = `bg-${req.body.cor}-500`
+
     try {
         const {db} = await connect()
 
         const vehicle = {
             placa: req.body.placa,
-            color: req.body.color,
+            cor: req.body.cor,
             modelo: req.body.modelo,
             consumo: req.body.consumo,
             categoria: req.body.categoria
