@@ -21,9 +21,17 @@ const Form = ({ newVehicle, setNewVehicle, handleSubmit, setCreateNewVehicle }: 
       <label className="capitalize">placa<input required onChange={(e) => setNewVehicle((newVehicle) => ({ ...newVehicle, placa: e.target.value.toUpperCase() }))} className="text-black rounded-xl ml-2  px-2" id="placa" name="placa" value={newVehicle.placa} /></label>
       <label className="capitalize">modelo<input required onChange={(e) => setNewVehicle((newVehicle) => ({ ...newVehicle, modelo: e.target.value }))} className="text-black rounded-xl ml-2 px-2" id="modelo" name="modelo" value={newVehicle.modelo} /></label>
       <label className="capitalize">cor<input required onChange={(e) => setNewVehicle((newVehicle) => ({ ...newVehicle, cor: e.target.value.toLowerCase() }))} className="text-black rounded-xl ml-2 px-2" id="cor" name="cor" value={newVehicle.cor} /></label>
+      <label className="capitalize">km<input type="number" required onChange={(e) => setNewVehicle((newVehicle) => ({ ...newVehicle, km: Number(e.target.value) }))} className="text-black rounded-xl ml-2 px-2" id="km" name="km" value={newVehicle.km} /></label>
       <div className="flex flex-wrap w-full justify-between">
-        <Button title="CANCELAR" type="button" onClick={() => { setCreateNewVehicle(false) }} />
-        <Button title="ADICIONAR" type="submit" />
+        <Button title="CANCELAR" type="button" onClick={() => {
+          setCreateNewVehicle(false)
+          setNewVehicle((newVehicle) => ({ ...newVehicle, cor: "", modelo: "", placa: "", km: 0 }))
+        }} />
+        <Button title="ADICIONAR" type="submit"
+          // onClick={() => {
+          //   setNewVehicle((newVehicle) => ({ ...newVehicle, cor: "", modelo: "", placa: "", km: 0 }))
+          // }}
+        />
       </div>
     </form>
   )

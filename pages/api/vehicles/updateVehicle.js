@@ -13,7 +13,7 @@ export default async function handler(req, res){
             categoria: req.body.categoria
         }
     
-        const response = await db.collection('vehicles').insertOne(vehicle)
+        const response = await db.collection('vehicles').update({"placa":vehicle.placa},vehicle)
     
         res.status(200).json(response)
     } catch (error) {

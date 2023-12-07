@@ -2,16 +2,17 @@ import React, { Dispatch, MouseEventHandler, SetStateAction } from 'react'
 import Button from './Button'
 
 interface NavbarType {
-  onClick: any
+  newVehicleModal: any,
+  fuelModal: any
 }
 
-const Navbar = ({onClick}: NavbarType) => {
+const Navbar = ({newVehicleModal, fuelModal}: NavbarType) => {
   return (
     <nav className=" flex justify-evenly items-center">
         <h1>Controle de Consumo</h1>
         <div className='flex gap-1 flex-col sm:flex-row sm:gap-5'>
-        <Button onClick={onClick} title="Novo Veículo"/>
-        <Button title="ABASTECER"/>
+        <Button onClick={newVehicleModal} title="Novo Veículo"/>
+        <Button onClick={fuelModal} title="ABASTECER"/>
         </div>
     </nav>
   )
