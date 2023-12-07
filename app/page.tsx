@@ -16,7 +16,7 @@ export type VehicleProps = {
   cor: string,
   modelo: string,
   consumo: number,
-  categoria: string,
+  categoria: any,
   km: number,
 }
 

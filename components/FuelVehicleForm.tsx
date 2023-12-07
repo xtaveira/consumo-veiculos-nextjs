@@ -18,12 +18,13 @@ interface FormInterface {
 const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVehicle, handleSubmit, setFuelVehicleModal }: FormInterface) => {
 
     const calculate = (e: FormEvent) => {
-        const findVehicle = vehicles.filter((vehicle) => vehicle.placa == fuelInfo.placa)
+
+        const findVehicle = vehicles.find((vehicle) => vehicle.placa == fuelInfo.placa)
         if (findVehicle) {
             console.log(findVehicle)
             const kmUsed = fuelInfo.newKm - findVehicle.km;
             const kmPerL = kmUsed / fuelInfo.litros;
-            const newCategoria = (kmPerL: number) => {
+            const newCategoria = (kmPerL: number): string => {
                 if (kmPerL > 10)
                     return "Quase Econômico"
                 else if (kmPerL > 15)
@@ -66,9 +67,9 @@ const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVe
                     setFuelInfo((fuelInfo) => ({ ...fuelInfo, placa: "", valor: 0, litros: 0, newKm: 0 }))
                 }} />
                 <Button title="ABASTECER" type="submit"
-                    // onClick={() => {
-                    //     setFuelInfo((fuelInfo) => ({ ...fuelInfo, placa: "", valor: 0, litros: 0, newKm: 0 }))
-                    // }}
+                // onClick={() => {
+                //     setFuelInfo((fuelInfo) => ({ ...fuelInfo, placa: "", valor: 0, litros: 0, newKm: 0 }))
+                // }}
                 />
             </div>
         </form>
