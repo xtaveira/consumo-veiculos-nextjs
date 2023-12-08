@@ -1,7 +1,7 @@
-
+"use client"
 
 import { FuelInfoProps, VehicleProps } from '@/app/page'
-import React, { Dispatch, FormEvent, SetStateAction } from 'react'
+import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import Button from './Button'
 
 interface FormInterface {
@@ -17,12 +17,21 @@ interface FormInterface {
 
 const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVehicle, handleSubmit, setFuelVehicleModal }: FormInterface) => {
 
+    const [plate, setPlate] = useState<string>()
+    const [amount, setAmount] = useState<number>()
+    const [newKm, setNewKm] = useState<number>()
+    const [value, setValue] = useState<number>()
+
+
+
+
     const calculate = (e: FormEvent) => {
 
-        const findVehicle = vehicles.find((vehicle) => vehicle.placa == fuelInfo.placa)
-        if (findVehicle) {
+        const findVehicle = vehicles.find((vehicle) => vehicle.placa == plate) 
+            console.log(findVehicle);
+        if (findVehicle && newKm) {
             console.log(findVehicle)
-            const kmUsed = fuelInfo.newKm - findVehicle.km;
+            const kmUsed = newKm - findVehicle.km;
             const kmPerL = kmUsed / fuelInfo.litros;
             const newCategoria = (kmPerL: number): string => {
                 if (kmPerL > 10)
@@ -44,6 +53,7 @@ const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVe
                 km: fuelInfo.newKm,
             })
 
+            console.log(setNewVehicle)
 
             handleSubmit(e)
         }
@@ -57,10 +67,10 @@ const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVe
             <div className='w-full'>
                 <h2 className="text-center">Abastecer Veículo</h2>
             </div>
-            <label className="capitalize">placa<input required onChange={(e) => setFuelInfo((fuelInfo) => ({ ...fuelInfo, placa: e.target.value.toUpperCase() }))} className="text-black rounded-xl ml-2  px-2" id="placa" name="placa" value={fuelInfo.placa} /></label>
-            <label className="capitalize">litros<input required type="number" onChange={(e) => setFuelInfo((fuelInfo) => ({ ...fuelInfo, litros: Number(e.target.value) }))} className="text-black rounded-xl ml-2 px-2" id="litros" name="litros" value={fuelInfo.litros} /></label>
-            <label className="capitalize">novo km<input required type="number" onChange={(e) => setFuelInfo((fuelInfo) => ({ ...fuelInfo, newKm: Number(e.target.value) }))} className="text-black rounded-xl ml-2 px-2" id="km" name="km" value={fuelInfo.newKm} /></label>
-            <label className="capitalize">total R$<input type="number" required onChange={(e) => setFuelInfo((fuelInfo) => ({ ...fuelInfo, valor: Number(e.target.value) }))} className="text-black rounded-xl ml-2 px-2" id="valor" name="valor" value={fuelInfo.valor} /></label>
+            <label className="capitalize">placa<input required onChange={ (e) => setPlate(e.target.value) } className="text-black rounded-xl ml-2  px-2" id="placa" name="placa" value={plate} /></label>
+            <label className="capitalize">litros<input required type="number" onChange={ (e) => setAmount(Number(e.target.value)) } className="text-black rounded-xl ml-2 px-2" id="litros" name="litros" value={amount} /></label>
+            <label className="capitalize">novo km<input required type="number" onChange={ (e) => setNewKm(Number(e.target.value)) } className="text-black rounded-xl ml-2 px-2" id="km" name="km" value={newKm} /></label>
+            <label className="capitalize">total R$<input type="number" required onChange={ (e) => setValue(Number(e.target.value)) } className="text-black rounded-xl ml-2 px-2" id="valor" name="valor" value={value} /></label>
             <div className="flex flex-wrap w-full justify-between">
                 <Button title="CANCELAR" type="button" onClick={() => {
                     setFuelVehicleModal(false)
