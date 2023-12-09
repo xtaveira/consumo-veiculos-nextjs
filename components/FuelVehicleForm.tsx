@@ -30,9 +30,9 @@ const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVe
             const kmPerL = Number(kmUsed / amount)
 
             const getCategoria = (): string => {
-                if (kmPerL > 10) {
+                if (kmPerL > 5) {
                     return "Quase Econômico";
-                } else if (kmPerL > 5) {
+                } else if (kmPerL > 10) {
                     return "Muito Econômico";
                 } else {
                     return "Gasta demais";
