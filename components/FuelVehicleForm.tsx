@@ -63,11 +63,11 @@ const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVe
     }
 
     return (
-        <form className="flex flex-col gap-4 items-end justify-center" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4 items-end justify-center" onSubmit={calculate}>
             <div className='w-full'>
                 <h2 className="text-center">Abastecer Veículo</h2>
             </div>
-            <label className="capitalize">placa<input required onChange={ (e) => setPlate(e.target.value) } className="text-black rounded-xl ml-2  px-2" id="placa" name="placa" value={plate} /></label>
+            <label className="capitalize">placa<input required onChange={ (e) => setPlate(e.target.value.toUpperCase()) } className="text-black rounded-xl ml-2  px-2" id="placa" name="placa" value={plate} /></label>
             <label className="capitalize">litros<input required type="number" onChange={ (e) => setAmount(Number(e.target.value)) } className="text-black rounded-xl ml-2 px-2" id="litros" name="litros" value={amount} /></label>
             <label className="capitalize">novo km<input required type="number" onChange={ (e) => setNewKm(Number(e.target.value)) } className="text-black rounded-xl ml-2 px-2" id="km" name="km" value={newKm} /></label>
             <label className="capitalize">total R$<input type="number" required onChange={ (e) => setValue(Number(e.target.value)) } className="text-black rounded-xl ml-2 px-2" id="valor" name="valor" value={value} /></label>
