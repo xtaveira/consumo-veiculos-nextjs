@@ -10,7 +10,8 @@ export default async function handler(req, res){
             cor: req.body.cor,
             modelo: req.body.modelo,
             consumo: req.body.consumo,
-            categoria: req.body.categoria
+            categoria: req.body.categoria,
+            km: req.body.km
         }
     
         const response = await db.collection('vehicles').insertOne(vehicle)

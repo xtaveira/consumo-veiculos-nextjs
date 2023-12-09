@@ -17,32 +17,32 @@ interface FormInterface {
 
 const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVehicle, handleSubmit, setFuelVehicleModal }: FormInterface) => {
 
-    const [plate, setPlate] = useState<string>()
-    const [amount, setAmount] = useState<number>()
-    const [newKm, setNewKm] = useState<number>()
-    const [value, setValue] = useState<number>()
-
-
-
+    const [plate, setPlate] = useState<string>('')
+    const [amount, setAmount] = useState<number>(0)
+    const [newKm, setNewKm] = useState<number>(0)
+    const [value, setValue] = useState<number>(0)
 
     const calculate = (e: FormEvent) => {
 
-        const findVehicle = vehicles.find((vehicle) => vehicle.placa == plate) 
-            console.log(findVehicle);
+        const findVehicle = vehicles.find((vehicle) => vehicle.placa == plate)
         if (findVehicle && newKm) {
-            console.log(findVehicle)
             const kmUsed = newKm - findVehicle.km;
-            const kmPerL = kmUsed / fuelInfo.litros;
-            const newCategoria = (kmPerL: number): string => {
-                if (kmPerL > 10)
-                    return "Quase Econômico"
-                else if (kmPerL > 15)
-                    return "Muito Econômico"
-                else if (kmPerL > 20)
-                    return "Aprovada pelo INMETRO"
-                else
-                    return "Gasta demais"
-            }
+            const kmPerL = Number(kmUsed / amount)
+
+            const getCategoria = (): string => {
+                if (kmPerL > 10) {
+                    return "Quase Econômico";
+                } else if (kmPerL > 5) {
+                    return "Muito Econômico";
+                } else {
+                    return "Gasta demais";
+                }
+            };
+
+            const newCategoria = getCategoria()
+            
+
+            console.log(`consumo= ${kmPerL}`)
 
             setNewVehicle({
                 placa: findVehicle.placa,
@@ -50,15 +50,14 @@ const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVe
                 modelo: findVehicle.modelo,
                 consumo: kmPerL,
                 categoria: newCategoria,
-                km: fuelInfo.newKm,
+                km: newKm,
             })
-
-            console.log(setNewVehicle)
+            console.log(newVehicle)
 
             handleSubmit(e)
         }
         else {
-            setFuelInfo((fuelInfo) => ({ ...fuelInfo, placa: "Veículo não encontrado" }))
+            setPlate("Veículo não encontrado")
         }
     }
 
@@ -67,14 +66,14 @@ const FuelVehicleForm = ({ vehicles, fuelInfo, setFuelInfo, newVehicle, setNewVe
             <div className='w-full'>
                 <h2 className="text-center">Abastecer Veículo</h2>
             </div>
-            <label className="capitalize">placa<input required onChange={ (e) => setPlate(e.target.value.toUpperCase()) } className="text-black rounded-xl ml-2  px-2" id="placa" name="placa" value={plate} /></label>
-            <label className="capitalize">litros<input required type="number" onChange={ (e) => setAmount(Number(e.target.value)) } className="text-black rounded-xl ml-2 px-2" id="litros" name="litros" value={amount} /></label>
-            <label className="capitalize">novo km<input required type="number" onChange={ (e) => setNewKm(Number(e.target.value)) } className="text-black rounded-xl ml-2 px-2" id="km" name="km" value={newKm} /></label>
-            <label className="capitalize">total R$<input type="number" required onChange={ (e) => setValue(Number(e.target.value)) } className="text-black rounded-xl ml-2 px-2" id="valor" name="valor" value={value} /></label>
+            <label className="capitalize">placa<input required onChange={(e) => setPlate(e.target.value.toUpperCase())} className="text-black rounded-xl ml-2  px-2" id="placa" name="placa" value={plate} /></label>
+            <label className="capitalize">litros<input required type="number" onChange={(e) => setAmount(Number(e.target.value))} className="text-black rounded-xl ml-2 px-2" id="litros" name="litros" value={amount} /></label>
+            <label className="capitalize">novo km<input required type="number" onChange={(e) => setNewKm(Number(e.target.value))} className="text-black rounded-xl ml-2 px-2" id="km" name="km" value={newKm} /></label>
+            <label className="capitalize">total R$<input type="number" required onChange={(e) => setValue(Number(e.target.value))} className="text-black rounded-xl ml-2 px-2" id="valor" name="valor" value={value} /></label>
             <div className="flex flex-wrap w-full justify-between">
                 <Button title="CANCELAR" type="button" onClick={() => {
                     setFuelVehicleModal(false)
-                    setFuelInfo((fuelInfo) => ({ ...fuelInfo, placa: "", valor: 0, litros: 0, newKm: 0 }))
+                    // setFuelInfo((fuelInfo) => ({ ...fuelInfo, placa: "", valor: 0, litros: 0, newKm: 0 }))
                 }} />
                 <Button title="ABASTECER" type="submit"
                 // onClick={() => {
