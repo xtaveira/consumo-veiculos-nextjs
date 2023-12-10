@@ -42,7 +42,7 @@ const page = () => {
 
   const getVehicles = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/vehicles/getVehicles');
+      const response = await axios.get('http://localhost:3000/api/vehicles/getVehicles', {withCredentials: true});
       setVehicles(response.data);
     } catch (error) {
       console.error('Error fetching vehicles:', error);
