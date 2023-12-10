@@ -112,7 +112,7 @@ const page = () => {
             }} />
             <section className="flex justify-center">
                 <div>
-                    <form className="flex flex-col gap-4" onSubmit={ }>
+                    <form className="flex flex-col gap-4" onSubmit={() => {}}>
                         <label htmlFor="deleteVehicle">Deletar Veículos por Modelo:<input type="text" id='deleteVehicle' name='deleteVehicle' /></label>
                         <Button title="DELETAR" type="submit" />
                     </form>
