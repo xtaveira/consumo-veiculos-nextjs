@@ -40,7 +40,7 @@ const page = () => {
 
   const getVehicles = async () => {
     try {
-      const response = await axios.get('/api/vehicles/route', {withCredentials: true, timeout: 10000});
+      const response = await axios.get('/api/vehicles/route', {withCredentials: true, timeout: 30000});
       setVehicles(response.data);
     } catch (error) {
       console.error('Error fetching vehicles:', error);
