@@ -2,8 +2,6 @@
 
 import VehicleCard from '@/components/VehicleCard'
 import React, { FormEvent, useEffect, useState } from 'react'
-import dbConnect from '@/utils/database'
-import Button from '@/components/Button'
 import Form from '@/components/Form'
 import axios from 'axios'
 import Navbar from '@/components/Navbar'
@@ -42,7 +40,7 @@ const page = () => {
 
   const getVehicles = async () => {
     try {
-      const response = await axios.get('/api/vehicles/getVehicles', {withCredentials: true,
+      const response = await axios.get('/api/vehicles', {withCredentials: true,
         timeout: 10000});
       setVehicles(response.data);
     } catch (error) {
@@ -60,7 +58,7 @@ const page = () => {
     e.preventDefault()
 
     try {
-      const response = await axios.post('/api/vehicles/insertVehicle', newVehicle);
+      const response = await axios.post('/api/insertVehicle', newVehicle);
 
       console.log('Response from server:', response.data);
     } catch (error) {
@@ -74,7 +72,7 @@ const page = () => {
     e.preventDefault()
 
     try {
-      const response = await axios.post('/api/vehicles/updateVehicle', newVehicle);
+      const response = await axios.post('/api/updateVehicle', newVehicle);
 
       console.log('Response from server:', response.data);
     } catch (error) {
