@@ -40,8 +40,7 @@ const page = () => {
 
   const getVehicles = async () => {
     try {
-      const response = await axios.get('/api/vehicles', {withCredentials: true,
-        timeout: 10000});
+      const response = await axios.get('/api/vehicles/route', {withCredentials: true});
       setVehicles(response.data);
     } catch (error) {
       console.error('Error fetching vehicles:', error);
@@ -58,7 +57,7 @@ const page = () => {
     e.preventDefault()
 
     try {
-      const response = await axios.post('/api/insertVehicle', newVehicle);
+      const response = await axios.post('/api/insertVehicles/route', newVehicle);
 
       console.log('Response from server:', response.data);
     } catch (error) {
@@ -72,7 +71,7 @@ const page = () => {
     e.preventDefault()
 
     try {
-      const response = await axios.post('/api/updateVehicle', newVehicle);
+      const response = await axios.post('/api/updateVehicles/route', newVehicle);
 
       console.log('Response from server:', response.data);
     } catch (error) {
