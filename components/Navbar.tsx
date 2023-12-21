@@ -8,7 +8,7 @@ interface NavbarType {
 
 const Navbar = ({newVehicleModal, fuelModal}: NavbarType) => {
   return (
-    <nav className=" flex justify-evenly items-center">
+    <nav className=" flex justify-evenly items-center bg-gray-900 ">
         <h1>Controle de Consumo</h1>
         <div className='flex gap-1 flex-col sm:flex-row sm:gap-5'>
         <Button onClick={newVehicleModal} title="Novo Veículo"/>

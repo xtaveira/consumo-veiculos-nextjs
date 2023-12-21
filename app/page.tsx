@@ -103,7 +103,7 @@ const page = () => {
 
 
   return (
-    <div className="min-h-screen grid grid-rows-[10%,80%,10%] bg-gray-900 text-white" >
+    <div className="min-h-screen grid grid-rows-[10%,80%,10%] bg-gray-800 text-white" >
       <Navbar newVehicleModal={activeModal} fuelModal={() => { 
         setFuelVehicleModal(!fuelVehicleModal) 
         setCreateNewVehicle(false)}} />
