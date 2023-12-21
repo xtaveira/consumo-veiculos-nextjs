@@ -1,4 +1,4 @@
-## App for monitor de consumption off my vehicles
+## App for monitor the consumption off my vehicles
 
 using NextJs, Tailwind CSS, NodeJs and MongoDB
 
