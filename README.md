@@ -1,5 +1,5 @@
 ## App for monitor de consumption off my vehicles
 
-using Nextjs, Tailwind CSS and 
+using NextJs, Tailwind CSS, NodeJs and MongoDB
 
-deploy: https://consumo-veiculos-nextjs.vercel.app
+more info on linkedin: 
